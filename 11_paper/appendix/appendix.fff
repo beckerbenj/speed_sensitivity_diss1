@@ -1,0 +1,22 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\begin{center}
+ \includegraphics[height = 0.25\textheight]{phi_theoret.eps}
+\end{center} 
+ \caption{Response Time Characteristic Curve of two items with identical time intensity ($\lambda_{k} = 4$) and differing item speed sensitivity parameters $\phi_{k}$.}
+ \label{fig:phi_theoret}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+ [!htb] 
+\begin{center}
+\includegraphics[height = 0.4\textheight]{miss_subGroup.eps}
+\end{center}
+\caption{Number of not reached items for the low and high speed sensitivity test form, across the four subgroups. Results shown for a randomly selected single replication.} 
+\label{fig:miss}
+\end{figure*}
+\efloatseparator
+ 

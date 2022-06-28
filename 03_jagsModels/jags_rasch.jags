@@ -1,0 +1,25 @@
+model{
+  # Likelihood
+  for(i in 1:n)
+  {
+    logit(prob[i]) <- eta[person[i]] - beta[item[i]]
+    y[i] ~ dbern(prob[i])
+  } 
+  
+  # Priors fuer die Item-Parameter
+  for(i in 1:n_item)
+  {
+     beta[i] ~ dnorm(0, 1.0E-6)
+  }
+
+  # Priors fuer die Personen-Parameter
+  for(i in 1:n_person)
+  {
+    eta[i] ~ dnorm(0, tau.eta)
+  }
+  
+  # Hyperprior fuer die Personen-Parameter
+    sigma.eta <- pow(tau.eta, -0.5)
+    tau.eta ~ dgamma(0.001, 0.001)
+    var.eta <- sigma.eta^2
+}

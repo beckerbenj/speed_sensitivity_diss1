@@ -1,0 +1,27 @@
+
+## 2pl Model
+
+model{
+  # Likelihood
+  for(i in 1:N) {
+    for(k in 1:items) {
+      p[i, k] <- phi(a[k] * theta[i] - b[k])
+      y[i, k] ~ dbern(p[i, k])
+    }
+  } 
+  
+  # Priors for item parameters
+  for(k in 1:items) {
+     a[k] ~ dnorm(1, 1)
+     b[k] ~ dnorm(0, 1)
+  }
+
+  # Priors for person parameters
+  for(i in 1:N)  {
+    theta[i] ~ dnorm(0, 1)
+  }
+
+}
+
+
+

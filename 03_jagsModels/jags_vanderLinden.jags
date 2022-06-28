@@ -1,0 +1,71 @@
+
+## model specification by EU
+
+model {
+  for (i in 1:N){ 
+    for (j in 1:items){		
+      
+      # item responses
+      y[i, j] ~ dbern(prob[i, j])
+      logit(prob[i, j]) <- ItemPar[j,2]*PersPar[i,1] - ItemPar[j,1]
+      
+      # response times
+      RT[i,j] ~ dlnorm(muOfLogRT[i,j] , 1/errVar[j])
+      muOfLogRT[i,j] <-  ItemPar[j,3]-PersPar[i,2]	
+      
+    }
+    
+    
+    # prior for person parameter
+    PersPar[i,1:2] ~ dmnorm(muP, invSigmaP)
+  }
+  
+  #### hyperprior for person parameter
+  # identification of model via fixed hypepriors
+  muP <- c(0,0)
+  SigmaP[1, 1] <- 1
+  ## ----------------------------------
+  # variance/precisions of second person parameter (speed) gets uninformative prior
+  invVar ~ dgamma(0.01,0.01) 
+  SigmaP[2, 2] <- inverse(invVar)
+  ## ----------------------------------
+  # limit covariances so can't get bigger than variances combined
+  cov_bord <- sqrt(SigmaP[1, 1] * SigmaP[2, 2])
+  rho ~ dnorm(0,0.0001) I(-cov_bord,cov_bord)
+  
+  SigmaP[1, 2] <- rho
+  SigmaP[2, 1] <- rho
+  
+  # invert covariance matrix (into Precision)
+  invSigmaP[1:2,1:2] <- inverse(SigmaP[ , ])
+  
+  # prior for item parameter
+  for (j in 1:items){
+    ItemPar[j,1:3] ~ dmnorm(muI, omegaI)
+    errVar[j] ~ dlnorm(muLogErrVar, invVarErrVar)
+  }
+  
+  ##### hyperprior for itemparameter
+  muI[1] ~ dnorm(0, 0.000001)
+  muI[2] ~ dnorm(1, 0.000001)
+  muI[3] ~ dnorm(1, 0.000001)
+  
+  muLogErrVar ~ dnorm(0, 0.000001)
+  
+  invVarErrVar ~ dgamma(0.01, 0.001)
+  
+  omegaI ~ dwish(M_vanderLinden,4)
+  
+  
+  ### Calculate posterior distributions for desired analysis parameters
+  VarErrVar <- 1/invVarErrVar
+  
+  SigmaI <- inverse(omegaI)
+  
+  for(i in 1:3){
+    for(j in 1:3){
+      correlI[i,j]<-SigmaI[i,j]/(sqrt(SigmaI[i,i])*sqrt(SigmaI[j,j]))
+    }
+  }
+  
+}

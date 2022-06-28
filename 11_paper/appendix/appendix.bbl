@@ -1,0 +1,32 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Johnson~Norman%
+, Kotz%
+\BCBL {}\ \BBA {} Balakrishnan%
+}{%
+Johnson~Norman%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1994}}%
+}]{%
+johnson.1994}
+\APACinsertmetastar {%
+johnson.1994}%
+\begin{APACrefauthors}%
+Johnson~Norman, L.%
+, Kotz, S.%
+\BCBL {}\ \BBA {} Balakrishnan, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1994}{}{}.
+\newblock
+\APACrefbtitle {Lognormal distributions, continuous univariate distributions
+  (Vol. 1).} {Lognormal distributions, continuous univariate distributions
+  (vol. 1).}
+\newblock
+\APACaddressPublisher{}{Wiley Series in Probability and Mathematical
+  Statistics: Applied Probability}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
