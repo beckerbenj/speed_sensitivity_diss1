@@ -9,7 +9,7 @@ source("01_functions/tools.R")
 ## set fonts
 windowsFonts(Times=windowsFont("TT Times New Roman"))
 
-load_path <- "n:/04_codaSamples/3rd run"
+load_path <- "n:/00_Promotion/11_Paper1_Bias/04_codaSamples/3rd run"
 
 # Math
 coda_paths_math <- list.files(path = file.path(load_path, "math"), pattern = "^sCoda_fox_form_", full.names = TRUE)
