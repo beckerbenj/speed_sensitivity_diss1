@@ -97,9 +97,10 @@ load_path <- "02_data"
 ### load data
 ######################################
 datList <- readRDS(file.path(load_path, "datList.rds"))
-modList_Incorrect <- readRDS(file.path(load_path, "modList_Incorrect.rds"))
+modList <- readRDS(file.path(load_path, "modList_Incorrect.rds"))
+#modList_Incorrect <- readRDS(file.path(load_path, "modList_Incorrect.rds"))
 #modList_Ignore <- readRDS("02_data/modList_Ignore.rds")
-modList <- modList_Incorrect
+#modList <- modList_Incorrect
 # ----------------------------------------
 
 
